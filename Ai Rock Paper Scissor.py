@@ -70,9 +70,9 @@ def guessuser(x): #x is user input
 	sciafterrock=0
 	sciaftersci=0
 
-	timer=1 if sindex-1<1 else sindex
+	timer=1 
 	templist=findlocations(a,"rock")
-	
+	templist = templist[-sindex:]
 	while timer<len(templist):
 		if a[templist[timer]-1]=="paper":
 			rockafterpaper+=1
@@ -84,8 +84,9 @@ def guessuser(x): #x is user input
 		timer+=1
 		
 	
-	timer=1 if sindex-1<1 else sindex
+	timer=1 
 	templist=findlocations(a,"paper")
+	templist = templist[-sindex:]
 	while timer<len(templist):
 		if a[templist[timer]-1]=="paper":
 			paperafterpaper+=1
@@ -94,8 +95,9 @@ def guessuser(x): #x is user input
 		elif a[templist[timer]-1]=="sci":
 			paperaftersci+=1
 		timer+=1
-	timer=1 if sindex-1<1 else sindex
+	timer=1 
 	templist=findlocations(a,"sci")
+	templist = templist[-sindex:]
 	while timer<len(templist):
 		if a[templist[timer]-1]=="paper":
 			sciafterpaper+=1
