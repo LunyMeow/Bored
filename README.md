@@ -16,5 +16,4 @@ I was used math in here.
 cubev2.py
 
 This project not finishet yet...
-##############################################################
 
