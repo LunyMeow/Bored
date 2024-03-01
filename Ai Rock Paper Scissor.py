@@ -4,6 +4,8 @@ import os
 import time
 
 debug=False
+osis = "windows" if os.name == "nt" else "notwindows"
+    
 if len(sys.argv)>1:
 	debug=True if sys.argv[1] == "-d" else False
 choices = ['rock', 'paper', 'sci']
@@ -36,7 +38,7 @@ def play(a,user): #a is for winning
 	print(f"User :{userp}")
 	print(f"AI   :{ai}")
 
-a=[]
+a=[] # i guess this list is users moves
 
 def findlocations(list,item):
 	t=0
@@ -46,8 +48,8 @@ def findlocations(list,item):
 			lista.append(t)
 		t+=1
 	return lista
-def guessuser(x): #x is user input
-	a.append(x)
+def guessuser(): 
+	
 	"""
 	a.append(x)
 	rockp=(a.count("rock")/len(a))*100
@@ -129,9 +131,14 @@ def guessuser(x): #x is user input
 
 	if debug:
 		#print(f"Paper {round(paperp,3)}: Rock {round(rockp,3)}: Sci {round(scip,3)}")
-		print(f"Paper :{paperafterrock} {paperaftersci} {paperafterpaper}")
-		print(f"Rock  :{rockafterrock} {rockaftersci} {rockafterpaper}")
-		print(f"Sci   :{sciafterrock} {sciaftersci} {sciafterpaper}")
+		
+		print(f"""
+        "After Rock"     "After Sci"     "After Paper"
+Paper :      {paperafterrock}           {paperaftersci}        {paperafterpaper}
+Rock  :      {rockafterrock}           {rockaftersci}        {rockafterpaper}
+Sci   :      {sciafterrock}           {sciaftersci}        {sciafterpaper}
+
+""")
 
 	if rockp>paperp and rockp > scip:
 		return "paper"
@@ -143,11 +150,16 @@ def guessuser(x): #x is user input
 
 
 
+
+
 while True:
 	#user_choice=random.choice(choices)
 	#time.sleep(0.05)
-	user_choice = input("Enter rock, paper, or sci:\n")
-	os.system("clear")
-	play(guessuser(user_choice),user_choice)
-
+        user_choice = input("Enter rock, paper, or sci:\n")
+        if osis == "windows":
+            os.system("cls")
+        else:
+            os.system("clear")
+        a.append(user_choice)
+        play(guessuser(),user_choice)
 
